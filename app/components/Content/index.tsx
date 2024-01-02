@@ -73,7 +73,7 @@ const Content = (props : IContent) => {
     if(name === 'Humanoid') return <PrecisionManufacturingIcon />
     if(name === 'Alien') return  <PublicOffIcon />
 
-    return null
+    return <NoAccountsIcon />
   }
 
 
