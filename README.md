@@ -1,38 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Instrucciones de Instalación:
 
-## Getting Started
+Antes de iniciar el proyecto, asegúrate de seguir estos pasos:
 
-First, run the development server:
+1. Abre la terminal y navega hasta el directorio del proyecto.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+2. Ejecuta el siguiente comando para instalar las dependencias necesarias:
+   ```bash
+   npm i
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Una vez completada la instalación de las dependencias, inicia el proyecto con el siguiente comando:
+   ```bash
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Abre tu navegador web y accede a la aplicación en el puerto 3000:
+   ```
+   http://localhost:3000
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Estructura de Carpetas:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- **.next:** Esta carpeta contiene los archivos generados por Next.js durante la compilación y construcción del proyecto.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **.app:** Esta carpeta actúa como la raíz del proyecto, englobando tanto el frontend como el backend.
 
-## Learn More
+  - **.app/api:** En esta carpeta se encuentran los archivos relacionados con la lógica del backend, específicamente el archivo "characters" que contiene el endpoint GraphQL para obtener información de los personajes.
 
-To learn more about Next.js, take a look at the following resources:
+  - **.app/components:** Aquí se almacenan los componentes del frontend, incluyendo el encabezado (header) y el contenido (content) de la aplicación. Esta estructura ayuda a mantener organizados los elementos visuales y facilita la escalabilidad del proyecto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Recuerda ejecutar `npm i` antes de `npm run dev` para asegurarte de que todas las dependencias estén instaladas correctamente antes de iniciar el proyecto.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+**Descripción del Proyecto:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+El proyecto utiliza el API de Rick and Morty para recuperar datos, mostrando los resultados de la consulta y presentando un icono correspondiente a la especie buscada por el usuario.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+La estructura del código organiza los elementos esenciales en la carpeta app/components, que contiene tanto el encabezado (header) como el contenido (content) de la aplicación. Para la gestión de estilos, se empleó Material UI.
+
+En la carpeta app/api, específicamente en el archivo "characters", se encuentra un endpoint implementado con el método GET para obtener información de los personajes. Este endpoint utiliza GraphQL para realizar la consulta y enviar los resultados al frontend. La gestión de la consulta GraphQL se lleva a cabo utilizando Apollo Client, que se configura y encuentra en el archivo lib/client.ts. Este cliente Apollo facilita la interacción con el servidor GraphQL y permite realizar las consultas necesarias de manera eficiente.
+
+**Demo:**
+Puedes acceder a una demostración del proyecto [aquí](https://next-graphql-juan-ramirez.vercel.app/).
