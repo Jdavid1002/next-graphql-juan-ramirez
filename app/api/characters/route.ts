@@ -28,10 +28,13 @@ export const GET = async (request : Request) => {
       `
     })
     
-    return Response.json({ data })
+    return Response.json({ data}, {
+      status : 200
+    })
 
   } catch (error) {
-    console.log('error', error)
+    return Response.json({ message : 'Have error in the server.' }, {
+      status : 500
+    })
   }
-
 }
