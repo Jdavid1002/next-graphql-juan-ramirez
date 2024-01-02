@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.0-rc.2",
+    "@apollo/experimental-nextjs-app-support": "^0.5.2",
     "@next/font": "14.0.4",
     "@types/node": "20.10.6",
     "@types/react": "18.2.46",
