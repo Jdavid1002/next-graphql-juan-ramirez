@@ -89,7 +89,7 @@ const Content = (props : IContent) => {
           control={
             <Switch checked={OnlyHumans} onChange={() => setOnlyHumans(!OnlyHumans)}  />
           } 
-          label="Solo mostrar humanos."
+          label="Solo mostrar humanos u Humanoides"
         />
       </FormGroup>
 
