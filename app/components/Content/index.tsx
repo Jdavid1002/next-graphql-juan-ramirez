@@ -19,7 +19,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import PublicOffIcon from '@mui/icons-material/PublicOff';
 
 export interface IContent { 
   SearchValue : string
@@ -28,7 +31,7 @@ export interface IContent {
 export interface IResultsCharacters {
   image : string
   name : string
-  species : 'unknown' | 'Robot' | 'Human' | 'Humanoid'
+  species : 'unknown' | 'Robot' | 'Human' | 'Humanoid' | 'Alien'
   __typename : string  
 }
 
@@ -43,23 +46,24 @@ const Content = (props : IContent) => {
   const [CharactersPagination, setCharactersPagination] = useState(initialCharactersPagination)
   const [ResultsCharacters, setResultsCharacters] = useState<IResultsCharacters[]> ([])
   const [Loading, setLoading] = useState <boolean>(false)
+  const [OnlyHumans, setOnlyHumans] = useState<boolean>(false)
 
   const getCharacters = async (name : string) => {
     setLoading(true)
-    const response = await fetch(`/api/characters?name=${name}&page=${CharactersPagination?.current_page}`)
+    
+    const url = `/api/characters?name=${name}&page=${CharactersPagination?.current_page}&only_humans=${OnlyHumans}`
+    
+    const response = await fetch(url)
     const data = await response.json()
     const characters = data?.data?.characters?.results || []
-    setResultsCharacters(characters)
+
     setCharactersPagination({
       ...CharactersPagination,
       total_pages :data?.data?.characters?.info?.count / itemsPerPage
     })
+    setResultsCharacters(characters)
     setLoading(false)
   }
-
-  useMemo(() => {
-    getCharacters(props?.SearchValue)
-  }, [props?.SearchValue, CharactersPagination.current_page])
 
   const RenderIconBySpecies = ({name} : {name :  IResultsCharacters['species']}) : JSX.Element | null => {
     
@@ -67,12 +71,28 @@ const Content = (props : IContent) => {
     if(name === 'Human') return <DirectionsRunIcon />
     if(name === 'Robot') return <SmartToyIcon />
     if(name === 'Humanoid') return <PrecisionManufacturingIcon />
+    if(name === 'Alien') return  <PublicOffIcon />
 
     return null
   }
 
+
+  useMemo(() => {
+    getCharacters(props?.SearchValue)
+  }, [props?.SearchValue, CharactersPagination.current_page, OnlyHumans])
+
+
   return (
     <Box  padding={5} >
+      <FormGroup>
+        <FormControlLabel 
+          control={
+            <Switch checked={OnlyHumans} onChange={() => setOnlyHumans(!OnlyHumans)}  />
+          } 
+          label="Solo mostrar humanos."
+        />
+      </FormGroup>
+
       {Loading ? 
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme : any) => theme.zIndex.drawer + 1 }}
@@ -135,7 +155,6 @@ const Content = (props : IContent) => {
           /> 
         </Stack>
       }
-
     </Box>
   );
 }
