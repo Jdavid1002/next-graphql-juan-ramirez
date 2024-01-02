@@ -11,6 +11,11 @@
   "dependencies": {
     "@apollo/client": "^3.8.0-rc.2",
     "@apollo/experimental-nextjs-app-support": "^0.5.2",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material-nextjs": "^5.15.0",
     "@next/font": "14.0.4",
     "@types/node": "20.10.6",
     "@types/react": "18.2.46",
